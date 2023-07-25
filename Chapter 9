@@ -1,1 +1,86 @@
+import java.sql.*;
+import java.time.*;
+class TestAccount {
+	public static void main(String[] args) {
+		Account testAccount = new Account();
+		testAccount.setId(1122);
+		testAccount.setBalance(20000);
+		testAccount.setAnnualInterestRate(4.5);
+		testAccount.setMonthlyInterestRate(4.5);
+		testAccount.withdrawl(2500);
+		testAccount.deposit(3000);
+		double balance = testAccount.getBalance();
+		double annualInterestRate = testAccount.getAnnualInterestRate();
+		double monthlyInterestRate = testAccount.getMonthlyInterestRate();
+		double monthlyInterest = testAccount.getMonthlyInterest(balance, monthlyInterestRate);
+		System.out.println("Date Created : " + testAccount.getDateCreated());
+		System.out.println("I.D. number : " + testAccount.getId());
+		System.out.println("Current balance : " + ("$ ") + Math.round(balance/100)*100 + ".00");
+		System.out.println("Monthly interest : " +"$ " + Math.round(monthlyInterest*100)/100 + ".00" );
+	}
+}
+class Account{
+	private int id;
+	private double balance;
+	private double annualInterestRate;
+	private  LocalDate dateCreated = LocalDate.now();
+	private double monthlyInterestRate;
 
+	Account(){
+			id = 0;
+			balance = 0;
+			annualInterestRate = 0;
+			monthlyInterestRate = 0;			
+}
+	Account(int id, double balance, double annualInterestRate){
+		this.id = id;
+		this.balance = balance;
+		this.annualInterestRate = annualInterestRate;
+	}
+	
+	int getId (){
+		return this.id;
+	}
+	
+	void setId(int id){
+		this.id = id;
+	}
+	double getBalance (){
+		return this.balance;
+	}
+	void setBalance (double balance){
+		this.balance = balance;
+	}
+	double getMonthlyInterestRate (){
+		return this.monthlyInterestRate;
+	}
+	void setMonthlyInterestRate (double balance){
+		this.monthlyInterestRate = annualInterestRate/12;
+	}
+	double getAnnualInterestRate (){
+		return this.annualInterestRate;
+	}
+	void setAnnualInterestRate (double annualInterestRate){
+		this.annualInterestRate = annualInterestRate;
+	}
+	LocalDate getDateCreated (){
+		return dateCreated;
+	}
+	double getMonthlyInterestRate (double annualInterestRate){
+		double monthlyInterestRate = this.annualInterestRate/12;
+		return monthlyInterestRate;
+	}
+		double getMonthlyInterest(double balance, double monthlyInterestRate){		
+			double monthlyInterest = (this.balance/12) * (this.monthlyInterestRate);
+		return	monthlyInterest;	
+	}
+	double withdrawl(double amount){
+		balance = balance - amount;
+		return balance;
+	}
+	double deposit(double deposit){
+		balance = balance + deposit;
+		return balance;
+	}
+}
+	
