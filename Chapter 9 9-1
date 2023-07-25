@@ -1,0 +1,35 @@
+import java.awt.*;
+public class TestRectangle {
+	public static void main(String[] args) {
+		Rectangle rectangle1 = new Rectangle(3.5 , 35.9);
+//double width = 3.5;
+//double hieght = 35.9;
+		System.out.printf("The area of rectangle 1 is: %.1f" ,  rectangle1.getArea());
+		System.out.println("\nThe perimeter of rectangle 1 is: " + rectangle1.getPerimeter() + " \n");
+		
+		Rectangle rectangle2 = new Rectangle(4 , 40);
+//double width = 4;
+//double hieght = 40;
+		System.out.println("The area of rectangle 2 is: " + rectangle2.getArea() + " ");
+		System.out.println("The perimeter of the rectangle 2 is: " + rectangle2.getPerimeter() + " ");
+	}
+}
+class Rectangle {
+	double width;
+	double height;
+	
+	Rectangle() {
+		double width = 1;
+		double height = 1;
+	}
+Rectangle(double newWidth, double newHeight){
+	width = newWidth;
+	height = newHeight;
+}
+double getArea(){
+	return width * height;
+}
+double getPerimeter(){
+	return 2 * (width + height);
+	}
+}
